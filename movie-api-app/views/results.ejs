@@ -1,0 +1,18 @@
+
+<style>
+    .container {
+        height: fit-content;
+        width: 95%;
+        background: #cccccc;
+        margin: 20px auto;
+        padding: 20px;
+    }
+</style>
+
+<% results.forEach((result) => { %>
+    <div class="container">
+        <h1> <%= result.title %> </h1>
+        <h3>Release Date: <%= result.release_date %></h3>
+        <p> <%= result.overview %></p>
+    </div>
+<% }) %>

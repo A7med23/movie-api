@@ -14,7 +14,27 @@ app.get('/search', (req, res) => {
 });
 
 app.get('/results', (req, res) => {
-    res.render('results')
+    //the main link for the search function in the api
+    let apiMainLink = 'https://api.themoviedb.org/3/search/movie?api_key=d49f417581b4e40e0e362764e4d6fbb0&query=';
+
+    let searchInput = req.query.search;
+
+    request(apiMainLink + searchInput, (error, response, body) => {
+
+        let receivedData = JSON.parse(body);
+
+        if(!error && response.statusCode === 200) {
+
+            res.render('results', {results: receivedData["results"]});
+
+        } else {
+
+            console.log('Something Went Wrong');
+            console.log(error);
+
+        }
+    });
+    
 });
 
 app.listen(4000, () => {
